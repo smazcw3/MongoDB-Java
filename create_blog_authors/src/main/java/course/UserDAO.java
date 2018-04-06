@@ -49,8 +49,7 @@ public class UserDAO {
 
         String passwordHash = makePasswordHash(password, Integer.toString(random.nextInt()));
 
-        Document user = new Document("_id", username)
-                .append("password", passwordHash);
+        Document user = new Document("_id", username).append("password", passwordHash);
                
         // create an object suitable for insertion into the user collection
         // be sure to add username and hashed password to the document. problem instructions
@@ -63,7 +62,7 @@ public class UserDAO {
         }
 
         try {
-        		usersCollection.insertOne(user);
+        	usersCollection.insertOne(user);
             // insert the document into the user collection here
             return true;
         } catch (MongoWriteException e) {
@@ -78,7 +77,7 @@ public class UserDAO {
     public Document validateLogin(String username, String password) {
     	
         Bson filter = new Document("_id",username);
-    		Document user = usersCollection.find(filter).first();
+    	Document user = usersCollection.find(filter).first();
 
         // assign the result to the user variable.
 
